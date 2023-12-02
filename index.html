@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+        integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="./Icons/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Open Sketch</title>
+</head>
+
+<body>
+    <div class="options-cont">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="tools-cont scale-menu-bar">
+        <img class="pencil" src="Icons/pencil.svg">
+        <img class="eraser" src="Icons/eraser.svg">
+        <img class="download" src="Icons/download.svg">
+        <img class="upload" src="Icons/upload.svg">
+        <img class="sticky" src="Icons/sticky.svg">
+        <img class="redo" src="Icons/redo.svg">
+        <img class="undo" src="Icons/undo.svg">
+    </div>
+
+    <div class="pencil-functionality">
+        <div class="pencil-size">
+            <input type="range" min=2 max=10 value=4>
+        </div>
+        <div class="pencil-color">
+            <div class="black color-choice"></div>
+            <div class="green color-choice"></div>
+            <div class="blue color-choice"></div>
+        </div>
+    </div>
+    <div class="eraser-box">
+        <input type="range" min=2 max=10 value=4>
+    </div>
+    <canvas></canvas>
+
+
+
+    <script src="./app.js"></script>
+    <script src="./canvas.js"></script>
+
+</body>
+
+</html>
