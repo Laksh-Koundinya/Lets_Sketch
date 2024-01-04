@@ -4,12 +4,7 @@ const socket = require("socket.io");
 const app = express(); //Initialized and server ready
 
 app.use(express.static("public"));
-
-const corsOptions = {
-  origin: "*",
-  optionsSuccessStatus: 200
-};
-app.use(require("cors")(corsOptions));
+//app.use(require("cors")({ origin: "*" }));
 
 let port = process.env.PORT || 5001;
 let server = app.listen(port, () => {
@@ -18,9 +13,17 @@ let server = app.listen(port, () => {
 
 let io = socket(server, {
   cors: {
-    origin: "*",
-    methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
-    credentials: false,
+    origin: "https://lets-sketch-it.vercel.app",
+    methods: ["GET", "POST"],
+  },
+  handlePreflightRequest: (req, res) => {
+    const headers = {
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      "Access-Control-Allow-Origin": req.headers.origin, //or the specific origin you want to give access to,
+      "Access-Control-Allow-Credentials": true,
+    };
+    res.writeHead(200, headers);
+    res.end();
   },
 });
 
