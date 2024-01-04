@@ -4,7 +4,12 @@ const socket = require("socket.io");
 const app = express(); //Initialized and server ready
 
 app.use(express.static("public"));
-//app.use(require("cors")({ origin: "*" }));
+
+const corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200
+};
+app.use(require("cors")(corsOptions));
 
 let port = process.env.PORT || 5001;
 let server = app.listen(port, () => {
@@ -12,17 +17,12 @@ let server = app.listen(port, () => {
 });
 
 let io = socket(server, {
-    handlePreflightRequest: (req, res) => {
-        const headers = {
-            "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            "Access-Control-Allow-Origin": req.headers.origin, //or the specific origin you want to give access to,
-            "Access-Control-Allow-Credentials": true
-        };
-        res.writeHead(200, headers);
-        res.end();
-    }
+  cors: {
+    origin: "*",
+    methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
+    credentials: false,
+  },
 });
-
 
 io.on("connection", (socket) => {
   console.log("Made socket connection");
